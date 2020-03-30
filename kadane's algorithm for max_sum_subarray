@@ -1,0 +1,30 @@
+#include<iostream>
+#include<climits>
+using namespace std;
+
+int maxSumSubarray(int *arr,int n){
+  
+   int curr_sum = 0;
+   int max_sum = INT_MIN;
+
+     for(int i=0;i<n;i++){
+        curr_sum += arr[i];
+        if(curr_sum < 0){
+            curr_sum = 0;
+        }
+        if(curr_sum > max_sum){
+            max_sum = curr_sum;
+        }
+     }
+ return max_sum;
+}
+
+int main(){
+
+ int arr[] = {-3,2,5,-1,6,3,-2,7,-5,2};
+ int n = sizeof(arr)/sizeof(int);
+
+   cout<< maxSumSubarray(arr,n) <<endl;
+
+   return 0; 
+}
