@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+
+pair<int,pair<int,int>> maxSumSubarray(int* arr,int n){
+
+int sum = 0;
+int last_saved_sum = 0;
+int first_index,second_index;
+ for(int i=0;i<n;i++){
+     for(int j=i;j<n;j++){
+         for(int k=i;k<=j;k++){
+             sum += arr[k];
+         }
+        if(sum > last_saved_sum){
+            last_saved_sum = sum;
+            first_index = i;
+            second_index = j;
+        } 
+       sum = 0; 
+     }
+ }
+
+ return make_pair(last_saved_sum,make_pair(first_index,second_index));
+
+}
+
+int main(){
+ 
+ // int arr[] = {1,2,3,4,5};
+  int arr[] = {-3,2,5,-1,6,3,-2,7,-5,2};
+  int n = sizeof(arr)/sizeof(int);
+
+   pair<int,pair<int,int>> p = maxSumSubarray(arr,n);
+ 
+ // printing max subarray value + the starting and ending index whose sum is obtained   
+   cout<<p.first<<" "<<p.second.first<<" "<<p.second.second;
+
+   return 0; 
+}
