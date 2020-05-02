@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define MAX 1000000
+
+int main(){
+ 
+int csum[MAX] = {0}; 
+int freq[MAX] = {0}; 
+int cnt = 0;
+
+ // pre calculation of prime and its occurences
+ // by taking O(NlogNlogN) approach : prime sieve    
+    for(int i=2;i<=MAX;i++){
+        if(freq[i] == 0){
+            csum[i] = ++cnt;
+        }else{
+            csum[i] = cnt; 
+        }
+     for(int j=i*2;j<=MAX;j+=i){
+         freq[j] = 1;
+     } 
+    }
+ 
+ int a,b;
+ cin >> a >> b;
+
+ int ans = csum[b] - csum[a-1];
+ cout<< ans <<endl;
+   return 0; 
+}
