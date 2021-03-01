@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long 
+#define pb push_back
+#define popb pop_back
+#define ff first
+#define ss second
+#define CASE(x,val) cout<<"Case #"<<x<<": "<<val;
+
+int solve(string num,int n,int x,bool tight){
+	// length=0 so sum = 0 no element no sum
+	if(n == 0){
+		if(x==0) return 1;
+		return 0;
+	}
+
+	int ans = 0;
+	int ub = tight==1 ? num[num.length()-n] - '0' : 9;
+	
+	for(int dig=0; dig<=ub; ++dig){
+		if(ub==dig)
+			ans += solve(num,n-1,x-dig,1);
+		else
+			ans += solve(num,n-1,x-dig,0);
+	}
+
+ return ans;
+}
+
+int main(){
+
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+    #ifndef ONLINE_JUDGE
+        freopen("input.txt","r",stdin);
+        freopen("output.txt","w",stdout);
+    #endif
+
+   	string L = "", R = "50";
+
+   	cout<<solve(R,R.length(),5,1);
+
+
+ return 0;       
+}
